@@ -6,6 +6,10 @@ toc: false
 
 Lorem ipsum...
 
+This is inline greek: $\alpha, \beta, \gamma$.
+
+$$\int_{-\infty}^{\infty} f(x) \ dx = \sqrt{\pi}.$$
+
 ```js
 import { Matrix } from 'ml-matrix';
 
