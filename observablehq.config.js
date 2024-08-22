@@ -2,7 +2,7 @@
 export default {
   // The project’s title; used in the sidebar and webpage titles.
   title: "AADB Vis",
-  head: '<script src="/scripts/mathjax-config.js" defer=""></script><script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>',
+  head: '<script src="/scripts/mathjax-config.js" defer></script><script type="text/javascript" id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>',
   
   // The pages and sections in the sidebar. If you don’t specify this option,
   // all pages will be listed in alphabetical order. Listing pages explicitly
