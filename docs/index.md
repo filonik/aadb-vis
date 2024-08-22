@@ -2,11 +2,17 @@
 toc: false
 ---
 
+<div style="display:none">
+$$
+\newcommand{\es}[1]{\mathbf{e}_{#1}}
+$$
+</div>
+
 # AADB Vis
 
 Lorem ipsum...
 
-This is inline greek: $\alpha, \beta, \gamma$.
+This is some inline greek: $\alpha, \beta, \gamma, \es{0}, \es{1}$.
 
 $$\int_{-\infty}^{\infty} f(x) \ dx = \sqrt{\pi}.$$
 
