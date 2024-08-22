@@ -4,8 +4,6 @@ on:
   workflow_dispatch: {}
   push:
     branches: [main]
-  schedule:
-    - cron: "15 10 * * *"
 
 jobs:
   deploy:
@@ -30,3 +28,8 @@ jobs:
           path: docs/.observablehq/cache
           key: data-${{ hashFiles('docs/data/*') }}-${{ steps.date.outputs.date }}
       - run: yarn build
+      - id: gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
