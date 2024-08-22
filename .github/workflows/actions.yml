@@ -30,5 +30,3 @@ jobs:
           path: docs/.observablehq/cache
           key: data-${{ hashFiles('docs/data/*') }}-${{ steps.date.outputs.date }}
       - run: yarn build
-      - run: yarn docs:build
-      - run: yarn docs:deploy
