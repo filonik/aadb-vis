@@ -1,0 +1,1 @@
+function a(e){return e&&e.__esModule&&Object.prototype.hasOwnProperty.call(e,"default")?e.default:e}function u(e){for(var r=new Array(e),t=0;t<e;++t)r[t]=t;return r}var o=u,n=a(o);export{n as default};

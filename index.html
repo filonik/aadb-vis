@@ -1,49 +1,82 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>AADB Vis</title>
+<title>Hypercomplex Numbers</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
 <link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.e68849dc.css">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
 <link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.e68849dc.css">
-<link rel="modulepreload" href="./_observablehq/client.3b3bb863.js">
+<link rel="modulepreload" href="./_observablehq/client.96ce58d5.js">
 <link rel="modulepreload" href="./_observablehq/runtime.f4c064b5.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.4d44b1d2.js">
-<link rel="modulepreload" href="./_node/ml-matrix@6.11.1/index.09d537b6.js">
-<link rel="modulepreload" href="./_node/is-any-array@2.0.1/index.9a6f9b53.js">
-<link rel="modulepreload" href="./_node/ml-array-rescale@1.3.7/index.66e8218d.js">
-<link rel="modulepreload" href="./_node/ml-array-max@1.2.4/index.e086161a.js">
-<link rel="modulepreload" href="./_node/ml-array-min@1.2.3/index.31e0b3b6.js">
-<script src="./_import/scripts/mathjax-config.9e85e279.js" defer=""></script><script type="text/javascript" id="MathJax-script" defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <script type="text/javascript" src="./_import/scripts/mathjax-config.9e85e279.js" defer=""></script>
+    <script type="text/javascript" id="MathJax-script" defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link rel="stylesheet" type="text/css" href="./_file/components/style.70e5dfb9.css">
 <script type="module">
 
-import {define} from "./_observablehq/client.3b3bb863.js";
-
-define({id: "68e95559", inputs: ["display"], outputs: ["Matrix","matrix"], body: async (display) => {
-const {Matrix} = await import("./_node/ml-matrix@6.11.1/index.09d537b6.js");
-
-const matrix = Matrix.ones(5, 5);
-
-display(matrix)
-return {Matrix,matrix};
-}});
+import "./_observablehq/client.96ce58d5.js";
 
 </script>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link observablehq-link-active"><a href="./">Hypercomplex Numbers</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link"><a href="./hypercomplex-numbers-2d">2-dimensional</a></li>
+    <li class="observablehq-link"><a href="./hypercomplex-numbers-3d">3-dimensional</a></li>
+    <li class="observablehq-link"><a href="./hypercomplex-numbers-4d">4-dimensional</a></li>
+  </ol>
+</nav>
+<script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
 <div id="observablehq-center">
 <main id="observablehq-main" class="observablehq">
 <div style="display:none">
 $$
-\newcommand{\es}[1]{\mathbf{e}_{#1}}
+\newcommand{\I}[1]{#1}
+\newcommand{\K}[1]{#1}
+\newcommand{\A}[1]{\mathbf{#1}}
+\newcommand{\scalars}[2][]{\K{#2}\I{#1}}
+\newcommand{\versors}[2][]{\A{#2}\I{#1}}
+\newcommand{\xs}[1]{\scalars[^{#1}]{x}}
+\newcommand{\ys}[1]{\scalars[^{#1}]{y}}
+\newcommand{\zs}[1]{\scalars[^{#1}]{z}}
+\newcommand{\es}[1]{\versors[_{#1}]{e}}
+\newcommand{\fs}[1]{\versors[_{#1}]{f}}
+\newcommand{\Xs}[2]{\scalars[_{#1}^{#2}]{X}}
+\newcommand{\Ys}[2]{\scalars[_{#1}^{#2}]{Y}}
+\newcommand{\Zs}[2]{\scalars[_{#1}^{#2}]{Z}}
+\newcommand{\Cs}[3]{\scalars[_{#1#2}^{#3}]{C}}
 $$
 </div>
-<h1 id="aadb-vis" tabindex="-1"><a class="observablehq-header-anchor" href="#aadb-vis">AADB Vis</a></h1>
-<p>Lorem ipsum...</p>
-<p>This is some inline greek: $\alpha, \beta, \gamma, \es{0}, \es{1}$.</p>
-<p>$$\int_{-\infty}^{\infty} f(x) \ dx = \sqrt{\pi}.$$</p>
-<div class="observablehq observablehq--block"><!--:68e95559:--></div>
+<h1 id="hypercomplex-numbers" tabindex="-1"><a class="observablehq-header-anchor" href="#hypercomplex-numbers">Hypercomplex Numbers</a></h1>
+<p>Hypercomplex numbers can be considered as a generalization of complex numbers. This website provides some interactive visualizations to build intuition.</p>
+<p>In the following we consider numbers of the form:</p>
+<p>$$
+\A{x} = \xs{\alpha}\es{\alpha} = \sum _{k=0}^{n} \xs{k}\es{k} = \xs{0}\es{0} + \xs{1}\es{1} + \dots + \xs{n}\es{n}
+$$</p>
+<p>With multiplication determined by structure constants $\Cs{\alpha}{\beta}{\gamma}$:</p>
+<p>$$
+\es{\alpha}\es{\beta} = \Cs{\alpha}{\beta}{\gamma}\es{\gamma}
+$$</p>
+<p>The product $\A{z}$ of two hypercomplex numbers $\A{x}$ and $\A{y}$ is given by:</p>
+<p>$$
+\zs{\gamma}\es{\gamma} = \xs{\alpha}\es{\alpha} \; \ys{\beta}\es{\beta}= \xs{\alpha}\ys{\beta} \; \es{\alpha}\es{\beta} = \xs{\alpha}\ys{\beta} \; \Cs{\alpha}{\beta}{\gamma}\es{\gamma}
+$$</p>
+<p>Or in string diagram form:</p>
+<!-- ![String Diagram](./mul-string-diagram-l.png "String Diagram") -->
+<p align="center">
+  <img style="width:120px" src="./_file/mul-string-diagram-l.c3619eb8.png" alt="String Diagram">
+</p>
+<p>For a detailed discussion of hypercomplex numbers including their algebraic properties, see: <a href="https://ixenv.com/reference/algebra/number-systems/hypercomplex-numbers.html" target="_blank" rel="noopener noreferrer">IXEnv</a>.</p>
+<p>For a collection of notable and/or well-known special cases of hypercomplex numbers, see: <a href="https://filonik.github.io/aadb/" target="_blank" rel="noopener noreferrer">AADB</a>.</p>
 </main>
 <footer id="observablehq-footer">
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-08-22T18:46:15">Aug 22, 2024</a>.</div>
+<nav><a rel="next" href="./hypercomplex-numbers-2d"><span>2-dimensional</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-08-31T17:40:27">Aug 31, 2024</a>.</div>
 </footer>
 </div>
