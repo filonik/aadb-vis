@@ -10,7 +10,10 @@
   },
   "dependencies": {
     "@observablehq/framework": "latest",
-    "ml-matrix": "^6.11.1"
+    "chroma-js": "^3.0.0",
+    "ml-matrix": "^6.11.1",
+    "ndarray": "^1.0.19",
+    "ndarray-show": "^2.0.0"
   },
   "devDependencies": {
     "rimraf": "^5.0.5"

@@ -1,9 +1,19 @@
 // See https://observablehq.com/framework/config for documentation.
 export default {
   // The project’s title; used in the sidebar and webpage titles.
-  title: "AADB Vis",
-  head: '<script src="/scripts/mathjax-config.js" defer></script><script type="text/javascript" id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>',
-  
+  title: "Hypercomplex Numbers",
+  head: `
+    <script type="text/javascript" src="/scripts/mathjax-config.js" defer></script>
+    <script type="text/javascript" id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link rel="stylesheet" type="text/css" href="/components/style.css"></link>`
+  ,
+  pages: [
+    {name: "2-dimensional", path: "/hypercomplex-numbers-2d"},
+    {name: "3-dimensional", path: "/hypercomplex-numbers-3d"},
+    {name: "4-dimensional", path: "/hypercomplex-numbers-4d"},
+  ],
+  //style: "style.css",
+
   // The pages and sections in the sidebar. If you don’t specify this option,
   // all pages will be listed in alphabetical order. Listing pages explicitly
   // lets you organize them into sections and have unlisted pages.

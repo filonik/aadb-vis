@@ -1,0 +1,97 @@
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border: 1px solid var(--theme-background);
+}
+
+.tooltip:hover {
+  border: 1px solid var(--theme-foreground);
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  background-color: var(--theme-background-b);
+  color: var(--theme-foreground);
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  pointer-events: none;
+
+  position: absolute;
+  width: 50px;
+  z-index: 1;
+}
+
+.tooltip-top .tooltiptext {
+  bottom: 150%;
+  left: 50%;
+  margin-left: -25px;
+}
+
+.tooltip-top .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--theme-background-b) transparent transparent transparent;
+}
+
+.tooltip-left .tooltiptext {
+  top: -8px;
+  left: 150%;
+}
+
+.tooltip-left .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent var(--theme-background-b) transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.ndarray {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ndarray-items {
+  border: 1px solid var(--theme-background-b);
+}
+
+/*
+.ndarray-items:hover {
+  border: 1px solid var(--theme-foreground-faint);
+}
+*/
+
+.ndarray-items-0 {
+  display: flex;
+  flex-direction: row;
+  gap: 1px;
+}
+
+.ndarray-items-1 {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.surface {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
