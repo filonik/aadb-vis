@@ -30,7 +30,7 @@
 
     <script type="text/javascript" src="./_import/scripts/mathjax-config.9e85e279.js" defer=""></script>
     <script type="text/javascript" id="MathJax-script" defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-    <link rel="stylesheet" type="text/css" href="./_file/components/style.70e5dfb9.css">
+    <link rel="stylesheet" type="text/css" href="./_file/components/style.a5ed9993.css">
 <script type="module">
 
 import {define} from "./_observablehq/client.96ce58d5.js";
@@ -41,11 +41,12 @@ const [{default: ndarray}, {NdArrayInput, jsonToNdArray}, {Surface1DView}] = awa
 return {ndarray,NdArrayInput,jsonToNdArray,Surface1DView};
 }});
 
-define({id: "54016647", inputs: ["Inputs","view"], outputs: ["examples","selectionInput","selection"], body: (Inputs,view) => {
+define({id: "9b9ccee6", inputs: ["Inputs","view"], outputs: ["examples","selectionInput","selection"], body: (Inputs,view) => {
 const examples = [
   {name: "Complex", C: {data:[1,0,0,1,0,1,-1,0], shape:[2,2,2]}},
   {name: "Dual", C: {data:[1,0,0,1,0,1,0,0], shape:[2,2,2]}},
   {name: "Split-Complex", C: {data:[1,0,0,1,0,1,+1,0], shape:[2,2,2]}},
+  {name: "Real + Real", C: {data:[ 1, 0, 0, 0, 0, 0, 0, 1 ], shape:[2,2,2]}},
 ]
 
 const selectionInput = Inputs.select(examples, {format: (example) => example.name, label: "Select Example"})
@@ -65,8 +66,8 @@ display(ndArrayInput)
 return {ndArrayInput};
 }});
 
-define({id: "39c9a0df", inputs: ["Surface1DView","C","display"], outputs: ["surfaceView"], body: (Surface1DView,C,display) => {
-const surfaceView = Surface1DView(C, {width: 400, height: 400})
+define({id: "4d29f5f7", inputs: ["Surface1DView","C","display"], outputs: ["surfaceView"], body: (Surface1DView,C,display) => {
+const surfaceView = Surface1DView(C, {width: 350, height: 350})
 display(surfaceView)
 return {surfaceView};
 }});
@@ -120,15 +121,15 @@ $$
 \A{x} = \xs{0}\es{0} + \xs{1}\es{1}
 $$</p>
 <h2 id="examples" tabindex="-1"><a class="observablehq-header-anchor" href="#examples">Examples</a></h2>
-<div class="observablehq observablehq--block"><!--:54016647:--></div>
-<div class="observablehq observablehq--block"><!--:561cf9d4:--></div>
+<div class="observablehq observablehq--block"><!--:9b9ccee6:--></div>
 <h3 id="structure-constants" tabindex="-1"><a class="observablehq-header-anchor" href="#structure-constants">Structure Constants</a></h3>
+<div class="observablehq observablehq--block"><!--:561cf9d4:--></div>
 <div class="observablehq observablehq--block"><!--:dc63e253:--></div>
 <h3 id="unit-surfaces" tabindex="-1"><a class="observablehq-header-anchor" href="#unit-surfaces">Unit Surfaces</a></h3>
-<div class="observablehq observablehq--block"><!--:39c9a0df:--></div>
+<div class="observablehq observablehq--block"><!--:4d29f5f7:--></div>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./"><span>Hypercomplex Numbers</span></a><a rel="next" href="./hypercomplex-numbers-3d"><span>3-dimensional</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-08-31T17:40:27">Aug 31, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-09-01T09:55:18">Sep 1, 2024</a>.</div>
 </footer>
 </div>
