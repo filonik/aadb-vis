@@ -36,6 +36,7 @@ const examples = [
   {name: "Complex", C: {data:[1,0,0,1,0,1,-1,0], shape:[2,2,2]}},
   {name: "Dual", C: {data:[1,0,0,1,0,1,0,0], shape:[2,2,2]}},
   {name: "Split-Complex", C: {data:[1,0,0,1,0,1,+1,0], shape:[2,2,2]}},
+  {name: "Real + Real", C: {data:[ 1, 0, 0, 0, 0, 0, 0, 1 ], shape:[2,2,2]}},
 ]
 
 const selectionInput = Inputs.select(examples, {format: (example) => example.name, label: "Select Example"})
@@ -43,11 +44,11 @@ const selection = view(selectionInput)
 //display(selectionInput)
 ```
 
+### Structure Constants
+
 ```js
 const C = jsonToNdArray(selection.C)
 ```
-
-### Structure Constants
 
 ```js
 const ndArrayInput = NdArrayInput(C, {step: 0.01})
@@ -57,6 +58,6 @@ display(ndArrayInput)
 ### Unit Surfaces
 
 ```js
-const surfaceView = Surface1DView(C, {width: 400, height: 400})
+const surfaceView = Surface1DView(C, {width: 350, height: 350})
 display(surfaceView)
 ```
