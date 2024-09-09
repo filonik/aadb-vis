@@ -21,43 +21,68 @@ $$
 import ndarray from 'ndarray'
 import {NdArrayInput, jsonToNdArray} from "./components/NdArrayInput.js"
 import {Surface1DView} from "./components/SurfaceView.js"
+
+function AadbLink(link) {
+  return html`<a href="https://filonik.github.io/aadb/#/${link}" target="_blank">AADB</a>`
+}
 ```
 
 # Hypercomplex Numbers 2D
 
+<!--
 $$
 \A{x} = \xs{0}\es{0} + \xs{1}\es{1}
 $$
 
 ## Examples
+-->
 
 ```js
 const examples = [
-  {name: "Complex", C: {data:[1,0,0,1,0,1,-1,0], shape:[2,2,2]}},
-  {name: "Dual", C: {data:[1,0,0,1,0,1,0,0], shape:[2,2,2]}},
-  {name: "Split-Complex", C: {data:[1,0,0,1,0,1,+1,0], shape:[2,2,2]}},
-  {name: "Real + Real", C: {data:[ 1, 0, 0, 0, 0, 0, 0, 1 ], shape:[2,2,2]}},
+  {name: "Complex", link: "2/1729", C: {data:[1,0,0,1,0,1,-1,0], shape:[2,2,2]}},
+  {name: "Dual", link: "2/271", C: {data:[1,0,0,1,0,1,0,0], shape:[2,2,2]}},
+  {name: "Split-Complex", link: "2/1000", C: {data:[1,0,0,1,0,1,+1,0], shape:[2,2,2]}},
+  {name: "Real + Real", link: "2/2188", C: {data:[ 1, 0, 0, 0, 0, 0, 0, 1 ], shape:[2,2,2]}},
 ]
 
-const selectionInput = Inputs.select(examples, {format: (example) => example.name, label: "Select Example"})
+const selectionInput = Inputs.select(examples, {format: (example) => example.name})
 const selection = view(selectionInput)
 //display(selectionInput)
 ```
+<p>
+<div class="flex flex-row gap-2">
+<div class="text-sm">Select Example:</div>
+${selectionInput}
+<div>
+${AadbLink(selection.link)}
+</div>
+</div>
+</p>
 
 ### Structure Constants
 
 ```js
 const C = jsonToNdArray(selection.C)
+const ndArrayInput = NdArrayInput(C, {step: 0.01})
+const surfaceView = Surface1DView(C, {width: 300, height: 300, invalidation})
 ```
 
-```js
-const ndArrayInput = NdArrayInput(C, {step: 0.01})
-display(ndArrayInput)
-```
+<!--
+<div class="flex flex-row gap-1">
+<div>
+$$
+\Cs{\alpha}{\beta}{\gamma}
+$$
+</div>
+${ndArrayInput}
+</div>
+-->
+${ndArrayInput}
 
 ### Unit Surfaces
 
-```js
-const surfaceView = Surface1DView(C, {width: 350, height: 350})
-display(surfaceView)
-```
+<div class="card">
+  ${surfaceView}
+</div>
+
+

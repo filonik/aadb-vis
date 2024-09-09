@@ -5,8 +5,8 @@ export default {
   head: `
     <script type="text/javascript" src="/scripts/mathjax-config.js" defer></script>
     <script type="text/javascript" id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-    <link rel="stylesheet" type="text/css" href="/components/style.css"></link>`
-  ,
+    <link rel="stylesheet" type="text/css" href="/components/style.css"></link>
+`, // <script src="https://cdn.tailwindcss.com"></script>
   pages: [
     {name: "2-dimensional", path: "/hypercomplex-numbers-2d"},
     {name: "3-dimensional", path: "/hypercomplex-numbers-3d"},
