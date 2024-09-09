@@ -14,14 +14,14 @@
 <link rel="modulepreload" href="./_observablehq/stdlib.4d44b1d2.js">
 <link rel="modulepreload" href="./_node/ndarray@1.0.19/index.2ea96455.js">
 <link rel="modulepreload" href="./_import/components/NdArrayInput.9b3f3158.js">
-<link rel="modulepreload" href="./_import/components/SurfaceView.bfefd0be.js">
+<link rel="modulepreload" href="./_import/components/SurfaceView.4a7dbb0b.js">
 <link rel="modulepreload" href="./_import/components/NumberInput.d54247cb.js">
 <link rel="modulepreload" href="./_node/htl@0.3.1/index.0caf36e7.js">
 <link rel="modulepreload" href="./_node/ndarray-show@2.0.0/index.c505cc93.js">
 <link rel="modulepreload" href="./_import/components/common.ef2de4d4.js">
 <link rel="modulepreload" href="./_node/chroma-js@3.0.0/index.a5d8304c.js">
-<link rel="modulepreload" href="./_observablehq/stdlib/inputs.40245518.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.40245518.js">
 <link rel="modulepreload" href="./_npm/isoformat@0.2.1/c68fbd73.js">
 <link rel="modulepreload" href="./_node/iota-array@1.0.0/index.90f1ef0f.js">
 <link rel="modulepreload" href="./_node/is-buffer@1.1.6/index.b42ddc39.js">
@@ -30,46 +30,64 @@
 
     <script type="text/javascript" src="./_import/scripts/mathjax-config.9e85e279.js" defer=""></script>
     <script type="text/javascript" id="MathJax-script" defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-    <link rel="stylesheet" type="text/css" href="./_file/components/style.a5ed9993.css">
+    <link rel="stylesheet" type="text/css" href="./_file/components/style.99ae733e.css">
+
 <script type="module">
 
 import {define} from "./_observablehq/client.96ce58d5.js";
 
-define({id: "d8227e14", outputs: ["ndarray","NdArrayInput","jsonToNdArray","Surface1DView"], body: async () => {
-const [{default: ndarray}, {NdArrayInput, jsonToNdArray}, {Surface1DView}] = await Promise.all([import("./_node/ndarray@1.0.19/index.2ea96455.js"), import("./_import/components/NdArrayInput.9b3f3158.js"), import("./_import/components/SurfaceView.bfefd0be.js")]);
+define({id: "b6e4b39f", inputs: ["html"], outputs: ["ndarray","NdArrayInput","jsonToNdArray","Surface1DView","AadbLink"], body: async (html) => {
+const [{default: ndarray}, {NdArrayInput, jsonToNdArray}, {Surface1DView}] = await Promise.all([import("./_node/ndarray@1.0.19/index.2ea96455.js"), import("./_import/components/NdArrayInput.9b3f3158.js"), import("./_import/components/SurfaceView.4a7dbb0b.js")]);
 
-return {ndarray,NdArrayInput,jsonToNdArray,Surface1DView};
+function AadbLink(link) {
+  return html`<a href="https://filonik.github.io/aadb/#/${link}" target="_blank">AADB</a>`
+}
+return {ndarray,NdArrayInput,jsonToNdArray,Surface1DView,AadbLink};
 }});
 
-define({id: "9b9ccee6", inputs: ["Inputs","view"], outputs: ["examples","selectionInput","selection"], body: (Inputs,view) => {
+define({id: "09d7d037", inputs: ["Inputs","view"], outputs: ["examples","selectionInput","selection"], body: (Inputs,view) => {
 const examples = [
-  {name: "Complex", C: {data:[1,0,0,1,0,1,-1,0], shape:[2,2,2]}},
-  {name: "Dual", C: {data:[1,0,0,1,0,1,0,0], shape:[2,2,2]}},
-  {name: "Split-Complex", C: {data:[1,0,0,1,0,1,+1,0], shape:[2,2,2]}},
-  {name: "Real + Real", C: {data:[ 1, 0, 0, 0, 0, 0, 0, 1 ], shape:[2,2,2]}},
+  {name: "Complex", link: "2/1729", C: {data:[1,0,0,1,0,1,-1,0], shape:[2,2,2]}},
+  {name: "Dual", link: "2/271", C: {data:[1,0,0,1,0,1,0,0], shape:[2,2,2]}},
+  {name: "Split-Complex", link: "2/1000", C: {data:[1,0,0,1,0,1,+1,0], shape:[2,2,2]}},
+  {name: "Real + Real", link: "2/2188", C: {data:[ 1, 0, 0, 0, 0, 0, 0, 1 ], shape:[2,2,2]}},
 ]
 
-const selectionInput = Inputs.select(examples, {format: (example) => example.name, label: "Select Example"})
+const selectionInput = Inputs.select(examples, {format: (example) => example.name})
 const selection = view(selectionInput)
 //display(selectionInput)
 return {examples,selectionInput,selection};
 }});
 
-define({id: "561cf9d4", inputs: ["jsonToNdArray","selection"], outputs: ["C"], body: (jsonToNdArray,selection) => {
+define({id: "02408d9d", mode: "inline", inputs: ["selectionInput","display"], body: async (selectionInput,display) => {
+display(await(
+selectionInput
+))
+}});
+
+define({id: "c149b61f", mode: "inline", inputs: ["AadbLink","selection","display"], body: async (AadbLink,selection,display) => {
+display(await(
+AadbLink(selection.link)
+))
+}});
+
+define({id: "a43e7c26", inputs: ["jsonToNdArray","selection","NdArrayInput","Surface1DView","invalidation"], outputs: ["C","ndArrayInput","surfaceView"], body: (jsonToNdArray,selection,NdArrayInput,Surface1DView,invalidation) => {
 const C = jsonToNdArray(selection.C)
-return {C};
-}});
-
-define({id: "dc63e253", inputs: ["NdArrayInput","C","display"], outputs: ["ndArrayInput"], body: (NdArrayInput,C,display) => {
 const ndArrayInput = NdArrayInput(C, {step: 0.01})
-display(ndArrayInput)
-return {ndArrayInput};
+const surfaceView = Surface1DView(C, {width: 300, height: 300, invalidation})
+return {C,ndArrayInput,surfaceView};
 }});
 
-define({id: "4d29f5f7", inputs: ["Surface1DView","C","display"], outputs: ["surfaceView"], body: (Surface1DView,C,display) => {
-const surfaceView = Surface1DView(C, {width: 350, height: 350})
-display(surfaceView)
-return {surfaceView};
+define({id: "e1fdae3a", mode: "inline", inputs: ["ndArrayInput","display"], body: async (ndArrayInput,display) => {
+display(await(
+ndArrayInput
+))
+}});
+
+define({id: "d1f23617", mode: "inline", inputs: ["surfaceView","display"], body: async (surfaceView,display) => {
+display(await(
+surfaceView
+))
 }});
 
 </script>
@@ -89,10 +107,6 @@ return {surfaceView};
 <script>{Object.assign(document.createElement("a"),{href:""}).password&&location.replace(location.href);const e=document.querySelector("#observablehq-sidebar"),t=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?t.checked=r==="true":t.indeterminate=!0;for(const o of document.querySelectorAll("#observablehq-sidebar summary")){const s=o.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${o.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
 <aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
 <nav>
-<div>Contents</div>
-<ol>
-<li class="observablehq-secondary-link"><a href="#examples">Examples</a></li>
-</ol>
 </nav>
 </aside>
 <div id="observablehq-center">
@@ -115,21 +129,45 @@ $$
 \newcommand{\Cs}[3]{\scalars[_{#1#2}^{#3}]{C}}
 $$
 </div>
-<div class="observablehq observablehq--block"><!--:d8227e14:--></div>
+<div class="observablehq observablehq--block"><!--:b6e4b39f:--></div>
 <h1 id="hypercomplex-numbers-2-d" tabindex="-1"><a class="observablehq-header-anchor" href="#hypercomplex-numbers-2-d">Hypercomplex Numbers 2D</a></h1>
-<p>$$
+<!--
+$$
 \A{x} = \xs{0}\es{0} + \xs{1}\es{1}
-$$</p>
-<h2 id="examples" tabindex="-1"><a class="observablehq-header-anchor" href="#examples">Examples</a></h2>
-<div class="observablehq observablehq--block"><!--:9b9ccee6:--></div>
+$$
+
+## Examples
+-->
+<div class="observablehq observablehq--block"><!--:09d7d037:--></div>
+<p>
+</p><div class="flex flex-row gap-2">
+<div class="text-sm">Select Example:</div>
+<observablehq-loading></observablehq-loading><!--:02408d9d:-->
+<div>
+<observablehq-loading></observablehq-loading><!--:c149b61f:-->
+</div>
+</div>
+<p></p>
 <h3 id="structure-constants" tabindex="-1"><a class="observablehq-header-anchor" href="#structure-constants">Structure Constants</a></h3>
-<div class="observablehq observablehq--block"><!--:561cf9d4:--></div>
-<div class="observablehq observablehq--block"><!--:dc63e253:--></div>
+<div class="observablehq observablehq--block"><!--:a43e7c26:--></div>
+<!--
+<div class="flex flex-row gap-1">
+<div>
+$$
+\Cs{\alpha}{\beta}{\gamma}
+$$
+</div>
+${ndArrayInput}
+</div>
+-->
+<p><observablehq-loading></observablehq-loading><!--:e1fdae3a:--></p>
 <h3 id="unit-surfaces" tabindex="-1"><a class="observablehq-header-anchor" href="#unit-surfaces">Unit Surfaces</a></h3>
-<div class="observablehq observablehq--block"><!--:4d29f5f7:--></div>
+<div class="card">
+  <observablehq-loading></observablehq-loading><!--:d1f23617:-->
+</div>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./"><span>Hypercomplex Numbers</span></a><a rel="next" href="./hypercomplex-numbers-3d"><span>3-dimensional</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-09-01T09:55:18">Sep 1, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-09-09T19:25:17">Sep 9, 2024</a>.</div>
 </footer>
 </div>
