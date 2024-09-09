@@ -139,7 +139,7 @@ float func( vec3 p )
 }
 */
 
-float func(in vec3 p) {
+float f(in vec3 p) {
   mat3 m = mat3(
     C(0,0,0)*p[0] + C(1,0,0)*p[1] + C(2,0,0)*p[2], C(0,1,0)*p[0] + C(1,1,0)*p[1] + C(2,1,0)*p[2], C(0,2,0)*p[0] + C(1,2,0)*p[1] + C(2,2,0)*p[2],
     C(0,0,1)*p[0] + C(1,0,1)*p[1] + C(2,0,1)*p[2], C(0,1,1)*p[0] + C(1,1,1)*p[1] + C(2,1,1)*p[2], C(0,2,1)*p[0] + C(1,2,1)*p[1] + C(2,2,1)*p[2],
@@ -151,53 +151,49 @@ float func(in vec3 p) {
 vec3 grad( in vec3 pos )
 {   
 	return vec3(
-    func(pos+eps.xyz) - func(pos-eps.xyz),
-    func(pos+eps.zxy) - func(pos-eps.zxy),
-    func(pos+eps.yzx) - func(pos-eps.yzx)
+    f(pos+eps.xyz) - f(pos-eps.xyz),
+    f(pos+eps.zxy) - f(pos-eps.zxy),
+    f(pos+eps.yzx) - f(pos-eps.yzx)
   ) / (2.0*precis);
 }
 
-float dist( vec3 p )
+float dist( vec3 p, float r )
 {
-	return func(p) / length(grad(p));
-}
-
-float map( vec3 p )
-{
-    return func( p );
+  p *= 2.;
+	return (f(p) - r) / length(grad(p));
 }
 
 vec2 intersect( in vec3 ro, in vec3 rd )
 {
-	float mind = precis*2.0;
+	float mind = 2.0*precis;
 	float maxd = 15.0;
 	
-	
 	{
-	float b = dot(ro,rd);
-	float c = dot(ro,ro) - 1.5*1.5;
-	float h = b*b - c;
-	if( h<0.0 ) return vec2(-1.0,0.0);
-	h = sqrt(h);
-	mind = max( mind, -b - h );
-	maxd = min( maxd, -b + h );
-    }
+    float b = dot(ro,rd);
+    float c = dot(ro,ro) - 1.5*1.5;
+    float h = b*b - c;
+    if( h<0.0 ) return vec2(-1.0,0.0);
+    h = sqrt(h);
+    mind = max( mind, -b - h );
+    maxd = min( maxd, -b + h );
+  }
 
-    float h = 1.0;
+  float h = 1.0;
 	float t = mind;
-    for( int i=0; i<150; i++ )
-	{
-        if( abs(h)<precis||t>maxd ) continue;
-	    h = dist( ro+rd*t );
-        t += 0.25*abs(h);
-    }
+  for( int i=0; i<150; i++ ) {
+    if( abs(h)<precis||t>maxd ) continue;
+	  h = dist( ro+rd*t, 1. );
+    t += 0.25*abs(h);
+  }
 
-    if( t>maxd ) t=-1.0;
-    return vec2(t,sign(h));
+  if( t>maxd ) t=-1.0;
+
+  return vec2(t,sign(h));
 }
 
 vec3 calcNormal( in vec3 p )
 {
+  p *= 2.;
 	return normalize( grad(p) );
 }
 
@@ -231,34 +227,35 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
     vec4 col = vec4(0.0);
     if( t.x>0.0 )
     {
-        // geometry
-        vec3 pos = ro + t.x*rd;
-        vec3 nor = calcNormal(pos);
+      // geometry
+      vec3 pos = ro + t.x*rd;
+      vec3 nor = calcNormal(pos);
 
-		// diffuse
-		col = vec4(0.0);
-		//float off = 1.0*texture( iChannel1, fragCoord.xy/iChannelResolution[1].xy, -100.0 ).x;
-		vec3  uu  = normalize( cross( nor, vec3(0.0,1.0,1.0) ) );
-		vec3  vv  = normalize( cross( uu, nor ) );
+      // diffuse
+      col = vec4(0.0);
+      //float off = 1.0*texture( iChannel1, fragCoord.xy/iChannelResolution[1].xy, -100.0 ).x;
+      vec3  uu  = normalize( cross( nor, vec3(0.0,1.0,1.0) ) );
+      vec3  vv  = normalize( cross( uu, nor ) );
 
-        // shading/lighting	
+      // shading/lighting	
 
-        float dif = clamp( dot(nor,vec3(0.7,0.6,0.4)), 0.0, 1.0 );
-        float amb = 0.5 + 0.5*dot(nor,vec3(0.0,0.8,0.6));
-        col = vec4(vec3(0.2,0.3,0.4)*amb + vec3(0.8,0.7,0.5)*dif,1.0);
-        
-		float ii = 0.5+0.5*t.y;
-		
-        // specular		
-		float fre = pow( clamp(1.0+dot(rd,nor),0.0,1.0), 5.0 );
-		vec3 ref = reflect( rd, nor );
-		float rs = 1.0;//softshadow( pos, ref, 32.0 );
-        col += ii * 1.0* (0.04 + 1.0*fre) * rs;
-        //col += ii * 1.0* (0.04 + 1.0*fre) * pow( texture( iChannel2, ref ).xyz, vec3(2.0) ) * rs;
+      float dif = clamp( dot(nor,vec3(0.7,0.6,0.4)), 0.0, 1.0 );
+      float amb = 0.5 + 0.5*dot(nor,vec3(0.0,0.8,0.6));
+      //col = vec4(vec3(1), 1.0);
+      col = vec4(vec3(0.2,0.3,0.4)*amb + vec3(0.8,0.7,0.5)*dif,1.0);
+      
 
-        // color
-		col.xyz *= mix( isCol.xyz, rsCol.xyz, ii );
-		//col *= 1.5;
+      float ii = 0.5+0.5*t.y;
+
+      // specular		
+      float fre = pow( clamp(1.0+dot(rd,nor),0.0,1.0), 5.0 );
+      vec3 ref = reflect( rd, nor );
+      float rs = 1.0;//softshadow( pos, ref, 32.0 );
+      col += ii * 1.0* (0.04 + 1.0*fre) * rs;
+      //col += ii * 1.0* (0.04 + 1.0*fre) * pow( texture( iChannel2, ref ).xyz, vec3(2.0) ) * rs;
+
+      // color
+      col.xyz *= mix( rsCol.xyz*0.25, rsCol.xyz, ii );
     }
 	
 		tot += col;
@@ -270,8 +267,6 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 	tot.xyz = pow( clamp( tot.xyz, 0.0, 1.0 ), vec3(0.45) );
 	
   fragColor = tot;
-
-  //fragColor = vec4(q.x,q.y,0,1);
 }
     
 void main() {
