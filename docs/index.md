@@ -48,7 +48,7 @@ Or in string diagram form:
 <!-- ![String Diagram](./mul-string-diagram-l.png "String Diagram") -->
 
 <p align="center">
-  <img style="width:120px" src="./mul-string-diagram-l.png" alt="String Diagram"/>
+  <img class="diagram" src="./mul-string-diagram-l.png" alt="String Diagram"/>
 </p>
 
 For a detailed discussion of hypercomplex numbers including their algebraic properties, see: [IXEnv](https://ixenv.com/reference/algebra/number-systems/hypercomplex-numbers.html).

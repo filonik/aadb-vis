@@ -123,3 +123,13 @@
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
+
+.diagram {
+  width: 120px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .diagram {
+    filter: invert(100%);
+  }
+}
