@@ -124,12 +124,16 @@
   line-height: 1.25rem;
 }
 
-.diagram {
-  width: 120px;
+@media (prefers-color-scheme: light) {
+  .diagram {
+    width: 120px;
+    filter: invert(100%);
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   .diagram {
-    filter: invert(100%);
+    width: 120px;
+    filter: invert(0%);
   }
 }
