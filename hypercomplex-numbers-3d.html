@@ -14,7 +14,7 @@
 <link rel="modulepreload" href="./_observablehq/stdlib.e1016048.js">
 <link rel="modulepreload" href="./_node/ndarray@1.0.19/index.2ea96455.js">
 <link rel="modulepreload" href="./_import/components/NdArrayInput.9b3f3158.js">
-<link rel="modulepreload" href="./_import/components/SurfaceView.b5f9f6f1.js">
+<link rel="modulepreload" href="./_import/components/SurfaceView.02a2e86c.js">
 <link rel="modulepreload" href="./_import/components/NumberInput.d54247cb.js">
 <link rel="modulepreload" href="./_node/htl@0.3.1/index.0caf36e7.js">
 <link rel="modulepreload" href="./_node/ndarray-show@2.0.0/index.c505cc93.js">
@@ -36,13 +36,13 @@
 
 import {define} from "./_observablehq/client.02eb96a7.js";
 
-define({id: "f719fb32", inputs: ["html"], outputs: ["ndarray","NdArrayInput","jsonToNdArray","Surface2DView","AadbLink"], body: async (html) => {
-const [{default: ndarray}, {NdArrayInput, jsonToNdArray}, {Surface2DView}] = await Promise.all([import("./_node/ndarray@1.0.19/index.2ea96455.js"), import("./_import/components/NdArrayInput.9b3f3158.js"), import("./_import/components/SurfaceView.b5f9f6f1.js")]);
+define({id: "303021e7", inputs: ["html"], outputs: ["ndarray","NdArrayInput","jsonToNdArray","Surface2DView","SurfaceSlice1DView","AadbLink"], body: async (html) => {
+const [{default: ndarray}, {NdArrayInput, jsonToNdArray}, {Surface2DView, SurfaceSlice1DView}] = await Promise.all([import("./_node/ndarray@1.0.19/index.2ea96455.js"), import("./_import/components/NdArrayInput.9b3f3158.js"), import("./_import/components/SurfaceView.02a2e86c.js")]);
 
 function AadbLink(link) {
   return html`<a href="https://filonik.github.io/aadb/#/${link}" target="_blank">AADB</a>`
 }
-return {ndarray,NdArrayInput,jsonToNdArray,Surface2DView,AadbLink};
+return {ndarray,NdArrayInput,jsonToNdArray,Surface2DView,SurfaceSlice1DView,AadbLink};
 }});
 
 define({id: "a678b570", inputs: ["Inputs","view"], outputs: ["examples","selectionInput","selection"], body: (Inputs,view) => {
@@ -74,11 +74,12 @@ AadbLink(selection.link)
 ))
 }});
 
-define({id: "615860ab", inputs: ["jsonToNdArray","selection","NdArrayInput","Surface2DView","invalidation"], outputs: ["C","ndArrayInput","surfaceView"], body: (jsonToNdArray,selection,NdArrayInput,Surface2DView,invalidation) => {
+define({id: "cc9e9bbc", inputs: ["jsonToNdArray","selection","NdArrayInput","Surface2DView","invalidation","SurfaceSlice1DView"], outputs: ["C","ndArrayInput","surfaceView","surfaceSliceView"], body: (jsonToNdArray,selection,NdArrayInput,Surface2DView,invalidation,SurfaceSlice1DView) => {
 const C = jsonToNdArray(selection.C)
 const ndArrayInput = NdArrayInput(C, {step: 0.01})
 const surfaceView = Surface2DView(C, {width: 300, height: 300, invalidation})
-return {C,ndArrayInput,surfaceView};
+const surfaceSliceView = SurfaceSlice1DView(C, {width: 300, height: 300, invalidation})
+return {C,ndArrayInput,surfaceView,surfaceSliceView};
 }});
 
 define({id: "e1fdae3a", mode: "inline", inputs: ["ndArrayInput","display"], body: async (ndArrayInput,display) => {
@@ -90,6 +91,12 @@ ndArrayInput
 define({id: "d1f23617", mode: "inline", inputs: ["surfaceView","display"], body: async (surfaceView,display) => {
 display(await(
 surfaceView
+))
+}});
+
+define({id: "2763d1c9", mode: "inline", inputs: ["surfaceSliceView","display"], body: async (surfaceSliceView,display) => {
+display(await(
+surfaceSliceView
 ))
 }});
 
@@ -132,7 +139,7 @@ $$
 \newcommand{\Cs}[3]{\scalars[_{#1#2}^{#3}]{C}}
 $$
 </div>
-<div class="observablehq observablehq--block"><!--:f719fb32:--></div>
+<div class="observablehq observablehq--block"><!--:303021e7:--></div>
 <h1 id="hypercomplex-numbers-3-d" tabindex="-1"><a class="observablehq-header-anchor" href="#hypercomplex-numbers-3-d">Hypercomplex Numbers 3D</a></h1>
 <!--
 $$
@@ -152,15 +159,18 @@ $$
 </div>
 <p></p>
 <h3 id="structure-constants" tabindex="-1"><a class="observablehq-header-anchor" href="#structure-constants">Structure Constants</a></h3>
-<div class="observablehq observablehq--block"><!--:615860ab:--></div>
+<div class="observablehq observablehq--block"><!--:cc9e9bbc:--></div>
 <p><observablehq-loading></observablehq-loading><!--:e1fdae3a:--></p>
 <h3 id="unit-surfaces" tabindex="-1"><a class="observablehq-header-anchor" href="#unit-surfaces">Unit Surfaces</a></h3>
 <div class="card">
   <observablehq-loading></observablehq-loading><!--:d1f23617:-->
 </div>
+<div class="card">
+  <observablehq-loading></observablehq-loading><!--:2763d1c9:-->
+</div>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./hypercomplex-numbers-2d"><span>2-dimensional</span></a><a rel="next" href="./hypercomplex-numbers-4d"><span>4-dimensional</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-10-12T17:04:06">Oct 12, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-10-15T19:11:00">Oct 15, 2024</a>.</div>
 </footer>
 </div>

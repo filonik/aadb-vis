@@ -14,7 +14,7 @@
 <link rel="modulepreload" href="./_observablehq/stdlib.e1016048.js">
 <link rel="modulepreload" href="./_node/ndarray@1.0.19/index.2ea96455.js">
 <link rel="modulepreload" href="./_import/components/NdArrayInput.9b3f3158.js">
-<link rel="modulepreload" href="./_import/components/SurfaceView.b5f9f6f1.js">
+<link rel="modulepreload" href="./_import/components/SurfaceView.02a2e86c.js">
 <link rel="modulepreload" href="./_import/components/NumberInput.d54247cb.js">
 <link rel="modulepreload" href="./_node/htl@0.3.1/index.0caf36e7.js">
 <link rel="modulepreload" href="./_node/ndarray-show@2.0.0/index.c505cc93.js">
@@ -37,7 +37,7 @@
 import {define} from "./_observablehq/client.02eb96a7.js";
 
 define({id: "b6e4b39f", inputs: ["html"], outputs: ["ndarray","NdArrayInput","jsonToNdArray","Surface1DView","AadbLink"], body: async (html) => {
-const [{default: ndarray}, {NdArrayInput, jsonToNdArray}, {Surface1DView}] = await Promise.all([import("./_node/ndarray@1.0.19/index.2ea96455.js"), import("./_import/components/NdArrayInput.9b3f3158.js"), import("./_import/components/SurfaceView.b5f9f6f1.js")]);
+const [{default: ndarray}, {NdArrayInput, jsonToNdArray}, {Surface1DView}] = await Promise.all([import("./_node/ndarray@1.0.19/index.2ea96455.js"), import("./_import/components/NdArrayInput.9b3f3158.js"), import("./_import/components/SurfaceView.02a2e86c.js")]);
 
 function AadbLink(link) {
   return html`<a href="https://filonik.github.io/aadb/#/${link}" target="_blank">AADB</a>`
@@ -168,6 +168,6 @@ ${ndArrayInput}
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./"><span>Hypercomplex Numbers</span></a><a rel="next" href="./hypercomplex-numbers-3d"><span>3-dimensional</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-10-12T17:04:06">Oct 12, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-10-15T19:11:00">Oct 15, 2024</a>.</div>
 </footer>
 </div>
