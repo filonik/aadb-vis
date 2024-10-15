@@ -20,7 +20,7 @@ $$
 ```js
 import ndarray from 'ndarray'
 import {NdArrayInput, jsonToNdArray} from "./components/NdArrayInput.js"
-import {Surface2DView} from "./components/SurfaceView.js"
+import {Surface2DView, SurfaceSlice1DView} from "./components/SurfaceView.js"
 
 function AadbLink(link) {
   return html`<a href="https://filonik.github.io/aadb/#/${link}" target="_blank">AADB</a>`
@@ -69,6 +69,7 @@ ${AadbLink(selection.link)}
 const C = jsonToNdArray(selection.C)
 const ndArrayInput = NdArrayInput(C, {step: 0.01})
 const surfaceView = Surface2DView(C, {width: 300, height: 300, invalidation})
+const surfaceSliceView = SurfaceSlice1DView(C, {width: 300, height: 300, invalidation})
 ```
 
 ${ndArrayInput}
@@ -77,4 +78,8 @@ ${ndArrayInput}
 
 <div class="card">
   ${surfaceView}
+</div>
+
+<div class="card">
+  ${surfaceSliceView}
 </div>

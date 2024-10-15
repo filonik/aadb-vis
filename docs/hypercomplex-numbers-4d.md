@@ -20,15 +20,22 @@ $$
 ```js
 import ndarray from 'ndarray'
 import {NdArrayInput, jsonToNdArray} from "./components/NdArrayInput.js"
+import {SurfaceSlice2DView} from "./components/SurfaceView.js"
+
+function AadbLink(link) {
+  return html`<a href="https://filonik.github.io/aadb/#/${link}" target="_blank">AADB</a>`
+}
 ```
 
 # Hypercomplex Numbers 4D
 
+<!--
 $$
 \A{x} = \xs{0}\es{0} + \xs{1}\es{1} + \xs{2}\es{2} + \xs{3}\es{3}
 $$
 
 ## Examples
+-->
 
 ```js
 const examples = [
@@ -54,11 +61,15 @@ const selection = view(selectionInput)
 
 ```js
 const C = jsonToNdArray(selection.C)
+const ndArrayInput = NdArrayInput(C, {step: 0.01})
+//const surfaceView = Surface2DView(C, {width: 300, height: 300, invalidation})
+const surfaceSliceView = SurfaceSlice2DView(C, {width: 300, height: 300, invalidation})
 ```
 
-```js
-const ndArrayInput = NdArrayInput(C, {step: 0.01})
-display(ndArrayInput)
-```
+${ndArrayInput}
 
 ### Unit Surfaces
+
+<div class="card">
+  ${surfaceSliceView}
+</div>
