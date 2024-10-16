@@ -137,3 +137,20 @@
     filter: invert(0%);
   }
 }
+
+.bilinear {
+  stroke: var(--theme-foreground);
+  fill: var(--theme-foreground);
+}
+
+.bilinear line {
+  fill: none;
+  stroke: var(--theme-foreground);
+  vector-effect: non-scaling-stroke;
+}
+
+.bilinear rect {
+  fill: none;
+  stroke: var(--theme-foreground-faintest);
+  vector-effect: non-scaling-stroke;
+}
