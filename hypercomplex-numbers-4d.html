@@ -49,7 +49,7 @@ function AadbLink(link) {
 return {ndarray,link,NdArrayInput,jsonToNdArray,SurfaceSlice2DView,BilinearTableView,AadbLink};
 }});
 
-define({id: "4e4a7a68", inputs: ["Inputs","view"], outputs: ["examples","selectionInput","selection"], body: (Inputs,view) => {
+define({id: "82f98d22", inputs: ["Inputs","view"], outputs: ["examples","selectionInput","selection"], body: (Inputs,view) => {
 const examples = [
   {name: "Quaternion (+1,+1)", C: {data:[ 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 1, 0, 0, -1, 0, 0, 0, 1, 0, 0, 0, 0, -1, -1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, -1, 0, 0, -1, 0, 0, 0 ], shape:[4,4,4]}},
   {name: "Split-Quaternion (+1,-1)", C: {data:[ 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 1, 0, 0, -1, 0, 0, 0, 1, 0, 0, 0, 0, -1, 1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0 ], shape:[4,4,4]}},
@@ -60,6 +60,7 @@ const examples = [
   {name: "Semi-Split-Quaternion (-1,0)", C: {data:[ 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], shape:[4,4,4]}},
   {name: "Semi-Split-Quaternion (0,-1)", C: {data:[ 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, -1, 1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ], shape:[4,4,4]}},
   {name: "Quarter-Quaternion (0,0)", C: {data:[ 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], shape:[4,4,4]}},
+  {name: "Complex + Complex", C: {data:[ 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, -1, 0 ], shape:[4,4,4]}},
   {name: "Bi-Complex", C: {data:[ 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 1, 0, 0, -1, 0, 0, 0, 1, 0, 0, 0, 0, 1, -1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 1, 0, 0, -1, 0, 0, -1, 0, 0, 1, 0, 0, 0 ], shape:[4,4,4]}},
   {name: "4-Plex", C: {data:[ 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0 ], shape:[4,4,4]}}, 
 ]
@@ -83,12 +84,6 @@ return {C,ndArrayInput,surfaceSliceView,tableView};
 define({id: "e1fdae3a", mode: "inline", inputs: ["ndArrayInput","display"], body: async (ndArrayInput,display) => {
 display(await(
 ndArrayInput
-))
-}});
-
-define({id: "f478bc6e", inputs: ["html","display"], body: async (html,display) => {
-display(await(
-html`<button ${{onclick(event) {console.log(event)}}}">Hello</button>`
 ))
 }});
 
@@ -152,11 +147,10 @@ $$
 
 ## Examples
 -->
-<div class="observablehq observablehq--block"><!--:4e4a7a68:--></div>
+<div class="observablehq observablehq--block"><!--:82f98d22:--></div>
 <h3 id="structure-constants" tabindex="-1"><a class="observablehq-header-anchor" href="#structure-constants">Structure Constants</a></h3>
 <div class="observablehq observablehq--block"><!--:b748453f:--></div>
 <p><observablehq-loading></observablehq-loading><!--:e1fdae3a:--></p>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:f478bc6e:--></div>
 <details open="">
   <summary>Unit Surfaces</summary>
   <div class="card">
@@ -172,6 +166,6 @@ $$
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./hypercomplex-numbers-3d"><span>3-dimensional</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-10-16T19:42:56">Oct 16, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-10-16T19:54:21">Oct 16, 2024</a>.</div>
 </footer>
 </div>
