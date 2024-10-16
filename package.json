@@ -13,6 +13,7 @@
     "chroma-js": "^3.0.0",
     "ml-matrix": "^6.11.1",
     "ndarray": "^1.0.19",
+    "ndarray-blas-gemv": "^1.0.4",
     "ndarray-show": "^2.0.0"
   },
   "devDependencies": {

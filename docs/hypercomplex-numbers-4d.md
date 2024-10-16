@@ -21,6 +21,7 @@ $$
 import ndarray from 'ndarray'
 import {NdArrayInput, jsonToNdArray} from "./components/NdArrayInput.js"
 import {SurfaceSlice2DView} from "./components/SurfaceView.js"
+import {BilinearTableView} from "./components/BilinearTableView.js"
 
 function AadbLink(link) {
   return html`<a href="https://filonik.github.io/aadb/#/${link}" target="_blank">AADB</a>`
@@ -64,6 +65,7 @@ const C = jsonToNdArray(selection.C)
 const ndArrayInput = NdArrayInput(C, {step: 0.01})
 //const surfaceView = Surface2DView(C, {width: 300, height: 300, invalidation})
 const surfaceSliceView = SurfaceSlice2DView(C, {width: 300, height: 300, invalidation})
+const tableView = BilinearTableView(C, {width: 50*4, height: 50*4})
 ```
 
 ${ndArrayInput}
@@ -72,4 +74,10 @@ ${ndArrayInput}
 
 <div class="card">
   ${surfaceSliceView}
+</div>
+
+### Multiplication Table
+
+<div class="card" style="text-align: center">
+  ${tableView}
 </div>

@@ -19,8 +19,10 @@ $$
 
 ```js
 import ndarray from 'ndarray'
+import {link} from "./components/common.js"
 import {NdArrayInput, jsonToNdArray} from "./components/NdArrayInput.js"
 import {Surface1DView} from "./components/SurfaceView.js"
+import {BilinearTableView} from "./components/BilinearTableView.js"
 
 function AadbLink(link) {
   return html`<a href="https://filonik.github.io/aadb/#/${link}" target="_blank">AADB</a>`
@@ -65,6 +67,8 @@ ${AadbLink(selection.link)}
 const C = jsonToNdArray(selection.C)
 const ndArrayInput = NdArrayInput(C, {step: 0.01})
 const surfaceView = Surface1DView(C, {width: 300, height: 300, invalidation})
+const tableView = BilinearTableView(C, {width: 50*2, height: 50*2})
+link(ndArrayInput, tableView)
 ```
 
 <!--
@@ -85,4 +89,8 @@ ${ndArrayInput}
   ${surfaceView}
 </div>
 
+### Multiplication Table
 
+<div class="card" style="text-align: center">
+  ${tableView}
+</div>
