@@ -3,7 +3,7 @@ import {html} from "../../_node/htl@0.3.1/index.0caf36e7.js"
 import ndarray from "../../_node/ndarray@1.0.19/index.2ea96455.js"
 import ndarrayShow from "../../_node/ndarray-show@2.0.0/index.c505cc93.js"
 
-import { NumberInput } from "./NumberInput.5319791a.js"
+import { NumberInput } from "./NumberInput.0177686c.js"
 
 export const jsonToNdArray = (obj) => ndarray(new Float32Array(obj.data), obj.shape.slice())
 export const ndArrayToJson = (array) => ({

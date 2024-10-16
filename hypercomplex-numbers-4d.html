@@ -14,15 +14,15 @@
 <link rel="modulepreload" href="./_observablehq/runtime.f8298b77.js">
 <link rel="modulepreload" href="./_observablehq/stdlib.e1df28da.js">
 <link rel="modulepreload" href="./_node/ndarray@1.0.19/index.2ea96455.js">
-<link rel="modulepreload" href="./_import/components/NdArrayInput.84d30369.js">
-<link rel="modulepreload" href="./_import/components/SurfaceView.a979731e.js">
+<link rel="modulepreload" href="./_import/components/common.b81f70e7.js">
+<link rel="modulepreload" href="./_import/components/NdArrayInput.8ddce8f1.js">
+<link rel="modulepreload" href="./_import/components/SurfaceView.303e4fff.js">
 <link rel="modulepreload" href="./_import/components/BilinearTableView.3db2be38.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
 <link rel="modulepreload" href="./_observablehq/stdlib/inputs.3b79a561.js">
-<link rel="modulepreload" href="./_import/components/NumberInput.5319791a.js">
+<link rel="modulepreload" href="./_import/components/NumberInput.0177686c.js">
 <link rel="modulepreload" href="./_node/htl@0.3.1/index.0caf36e7.js">
 <link rel="modulepreload" href="./_node/ndarray-show@2.0.0/index.c505cc93.js">
-<link rel="modulepreload" href="./_import/components/common.47f8f57e.js">
 <link rel="modulepreload" href="./_node/ndarray-blas-gemv@1.0.4/index.b58d2fce.js">
 <link rel="modulepreload" href="./_node/chroma-js@3.0.0/index.a5d8304c.js">
 <link rel="modulepreload" href="./_npm/isoformat@0.2.1/c68fbd73.js">
@@ -34,19 +34,19 @@
 
     <script type="text/javascript" src="./_import/scripts/mathjax-config.9e85e279.js" defer=""></script>
     <script type="text/javascript" id="MathJax-script" defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-    <link rel="stylesheet" type="text/css" href="./_file/components/style.604eaa1b.css">
+    <link rel="stylesheet" type="text/css" href="./_file/components/style.2efc4644.css">
 
 <script type="module">
 
 import {define} from "./_observablehq/client.34869733.js";
 
-define({id: "04513953", inputs: ["html"], outputs: ["ndarray","NdArrayInput","jsonToNdArray","SurfaceSlice2DView","BilinearTableView","AadbLink"], body: async (html) => {
-const [{default: ndarray}, {NdArrayInput, jsonToNdArray}, {SurfaceSlice2DView}, {BilinearTableView}] = await Promise.all([import("./_node/ndarray@1.0.19/index.2ea96455.js"), import("./_import/components/NdArrayInput.84d30369.js"), import("./_import/components/SurfaceView.a979731e.js"), import("./_import/components/BilinearTableView.3db2be38.js")]);
+define({id: "23ec7bb5", inputs: ["html"], outputs: ["ndarray","link","NdArrayInput","jsonToNdArray","SurfaceSlice2DView","BilinearTableView","AadbLink"], body: async (html) => {
+const [{default: ndarray}, {link}, {NdArrayInput, jsonToNdArray}, {SurfaceSlice2DView}, {BilinearTableView}] = await Promise.all([import("./_node/ndarray@1.0.19/index.2ea96455.js"), import("./_import/components/common.b81f70e7.js"), import("./_import/components/NdArrayInput.8ddce8f1.js"), import("./_import/components/SurfaceView.303e4fff.js"), import("./_import/components/BilinearTableView.3db2be38.js")]);
 
 function AadbLink(link) {
   return html`<a href="https://filonik.github.io/aadb/#/${link}" target="_blank">AADB</a>`
 }
-return {ndarray,NdArrayInput,jsonToNdArray,SurfaceSlice2DView,BilinearTableView,AadbLink};
+return {ndarray,link,NdArrayInput,jsonToNdArray,SurfaceSlice2DView,BilinearTableView,AadbLink};
 }});
 
 define({id: "4e4a7a68", inputs: ["Inputs","view"], outputs: ["examples","selectionInput","selection"], body: (Inputs,view) => {
@@ -70,18 +70,25 @@ const selection = view(selectionInput)
 return {examples,selectionInput,selection};
 }});
 
-define({id: "9bc484cf", inputs: ["jsonToNdArray","selection","NdArrayInput","SurfaceSlice2DView","invalidation","BilinearTableView"], outputs: ["C","ndArrayInput","surfaceSliceView","tableView"], body: (jsonToNdArray,selection,NdArrayInput,SurfaceSlice2DView,invalidation,BilinearTableView) => {
+define({id: "b748453f", inputs: ["jsonToNdArray","selection","NdArrayInput","SurfaceSlice2DView","invalidation","BilinearTableView","link"], outputs: ["C","ndArrayInput","surfaceSliceView","tableView"], body: (jsonToNdArray,selection,NdArrayInput,SurfaceSlice2DView,invalidation,BilinearTableView,link) => {
 const C = jsonToNdArray(selection.C)
 const ndArrayInput = NdArrayInput(C, {step: 0.01})
 //const surfaceView = Surface2DView(C, {width: 300, height: 300, invalidation})
 const surfaceSliceView = SurfaceSlice2DView(C, {width: 300, height: 300, invalidation})
 const tableView = BilinearTableView(C, {width: 50*4, height: 50*4})
+link(ndArrayInput, tableView)
 return {C,ndArrayInput,surfaceSliceView,tableView};
 }});
 
 define({id: "e1fdae3a", mode: "inline", inputs: ["ndArrayInput","display"], body: async (ndArrayInput,display) => {
 display(await(
 ndArrayInput
+))
+}});
+
+define({id: "f478bc6e", inputs: ["html","display"], body: async (html,display) => {
+display(await(
+html`<button ${{onclick(event) {console.log(event)}}}">Hello</button>`
 ))
 }});
 
@@ -136,7 +143,7 @@ $$
 \newcommand{\Cs}[3]{\scalars[_{#1#2}^{#3}]{C}}
 $$
 </div>
-<div class="observablehq observablehq--block"><!--:04513953:--></div>
+<div class="observablehq observablehq--block"><!--:23ec7bb5:--></div>
 <h1 id="hypercomplex-numbers-4-d" tabindex="-1"><a class="observablehq-header-anchor" href="#hypercomplex-numbers-4-d">Hypercomplex Numbers 4D</a></h1>
 <!--
 $$
@@ -147,19 +154,24 @@ $$
 -->
 <div class="observablehq observablehq--block"><!--:4e4a7a68:--></div>
 <h3 id="structure-constants" tabindex="-1"><a class="observablehq-header-anchor" href="#structure-constants">Structure Constants</a></h3>
-<div class="observablehq observablehq--block"><!--:9bc484cf:--></div>
+<div class="observablehq observablehq--block"><!--:b748453f:--></div>
 <p><observablehq-loading></observablehq-loading><!--:e1fdae3a:--></p>
-<h3 id="unit-surfaces" tabindex="-1"><a class="observablehq-header-anchor" href="#unit-surfaces">Unit Surfaces</a></h3>
-<div class="card">
-  <observablehq-loading></observablehq-loading><!--:2763d1c9:-->
-</div>
-<h3 id="multiplication-table" tabindex="-1"><a class="observablehq-header-anchor" href="#multiplication-table">Multiplication Table</a></h3>
-<div class="card" style="text-align: center">
-  <observablehq-loading></observablehq-loading><!--:605f2cdb:-->
-</div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:f478bc6e:--></div>
+<details open="">
+  <summary>Unit Surfaces</summary>
+  <div class="card">
+    <observablehq-loading></observablehq-loading><!--:2763d1c9:-->
+  </div>
+</details>
+<details>
+  <summary>Multiplication Table</summary>
+  <div class="card" style="text-align: center">
+    <observablehq-loading></observablehq-loading><!--:605f2cdb:-->
+  </div>
+</details>
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./hypercomplex-numbers-3d"><span>3-dimensional</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-10-16T17:37:23">Oct 16, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-10-16T19:42:56">Oct 16, 2024</a>.</div>
 </footer>
 </div>
