@@ -1,3 +1,18 @@
+html {
+  scrollbar-gutter: stable;
+}
+
+details {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+
+summary {
+  font-weight: 700;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
 /* Tooltip container */
 .tooltip {
   position: relative;
@@ -140,17 +155,6 @@
     width: 120px;
     filter: invert(0%);
   }
-}
-
-details {
-  margin-top: 0;
-  margin-bottom: 0.25rem;
-}
-
-summary {
-  font-weight: 700;
-  line-height: 1.15;
-  text-wrap: balance;
 }
 
 .bilinear {
