@@ -83,14 +83,16 @@ ${ndArrayInput}
 -->
 ${ndArrayInput}
 
-### Unit Surfaces
+<details open>
+  <summary>Unit Surfaces</summary>
+  <div class="card">
+    ${surfaceView}
+  </div>
+</details>
 
-<div class="card">
-  ${surfaceView}
-</div>
-
-### Multiplication Table
-
-<div class="card" style="text-align: center">
-  ${tableView}
-</div>
+<details>
+  <summary>Multiplication Table</summary>
+  <div class="card" style="text-align: center">
+    ${tableView}
+  </div>
+</details>

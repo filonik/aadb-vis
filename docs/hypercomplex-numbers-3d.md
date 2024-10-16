@@ -19,6 +19,7 @@ $$
 
 ```js
 import ndarray from 'ndarray'
+import {link} from "./components/common.js"
 import {NdArrayInput, jsonToNdArray} from "./components/NdArrayInput.js"
 import {Surface2DView, SurfaceSlice1DView} from "./components/SurfaceView.js"
 import {BilinearTableView} from "./components/BilinearTableView.js"
@@ -72,22 +73,24 @@ const ndArrayInput = NdArrayInput(C, {step: 0.01})
 const surfaceView = Surface2DView(C, {width: 300, height: 300, invalidation})
 const surfaceSliceView = SurfaceSlice1DView(C, {width: 300, height: 300, invalidation})
 const tableView = BilinearTableView(C, {width: 50*3, height: 50*3})
+link(ndArrayInput, tableView)
 ```
 
 ${ndArrayInput}
 
-### Unit Surfaces
+<details open>
+  <summary>Unit Surfaces</summary>
+  <div class="card">
+    ${surfaceView}
+  </div>
+  <div class="card">
+    ${surfaceSliceView}
+  </div>
+</details>
 
-<div class="card">
-  ${surfaceView}
-</div>
-
-<div class="card">
-  ${surfaceSliceView}
-</div>
-
-### Multiplication Table
-
-<div class="card" style="text-align: center">
-  ${tableView}
-</div>
+<details>
+  <summary>Multiplication Table</summary>
+  <div class="card" style="text-align: center">
+    ${tableView}
+  </div>
+</details>

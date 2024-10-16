@@ -91,6 +91,10 @@
   gap: 1px;
 }
 
+.dragging {
+  pointer-events: none;
+}
+
 .surface {
   display: flex;
   align-items: center;
@@ -136,6 +140,17 @@
     width: 120px;
     filter: invert(0%);
   }
+}
+
+details {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+
+summary {
+  font-weight: 700;
+  line-height: 1.15;
+  text-wrap: balance;
 }
 
 .bilinear {
