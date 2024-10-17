@@ -14,6 +14,7 @@
     "ml-matrix": "^6.11.1",
     "ndarray": "^1.0.19",
     "ndarray-blas-gemv": "^1.0.4",
+    "ndarray-ops": "^1.2.2",
     "ndarray-show": "^2.0.0"
   },
   "devDependencies": {

@@ -7,6 +7,10 @@ details {
   margin-bottom: 0.25rem;
 }
 
+details:not([open]) {
+  margin: 1rem 0;
+}
+
 summary {
   font-weight: 700;
   line-height: 1.15;
@@ -164,7 +168,8 @@ summary {
 
 .bilinear line {
   fill: none;
-  stroke: var(--theme-foreground);
+  /*stroke: var(--theme-foreground);*/
+  stroke-width: 2;
   vector-effect: non-scaling-stroke;
 }
 

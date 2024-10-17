@@ -67,7 +67,7 @@ ${AadbLink(selection.link)}
 const C = jsonToNdArray(selection.C)
 const ndArrayInput = NdArrayInput(C, {step: 0.01})
 const surfaceView = Surface1DView(C, {width: 300, height: 300, invalidation})
-const tableView = BilinearTableView(C, {width: 50*2, height: 50*2})
+const tableView = BilinearTableView(C, {width: 55*2, height: 55*2})
 link(ndArrayInput, tableView)
 ```
 
@@ -84,15 +84,15 @@ ${ndArrayInput}
 ${ndArrayInput}
 
 <details open>
-  <summary>Unit Surfaces</summary>
-  <div class="card">
-    ${surfaceView}
+  <summary>Multiplication Table</summary>
+  <div class="card" style="text-align: center">
+    ${tableView}
   </div>
 </details>
 
 <details>
-  <summary>Multiplication Table</summary>
-  <div class="card" style="text-align: center">
-    ${tableView}
+  <summary>Unit Surfaces</summary>
+  <div class="card">
+    ${surfaceView}
   </div>
 </details>

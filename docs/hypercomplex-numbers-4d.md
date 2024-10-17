@@ -67,22 +67,22 @@ const C = jsonToNdArray(selection.C)
 const ndArrayInput = NdArrayInput(C, {step: 0.01})
 //const surfaceView = Surface2DView(C, {width: 300, height: 300, invalidation})
 const surfaceSliceView = SurfaceSlice2DView(C, {width: 300, height: 300, invalidation})
-const tableView = BilinearTableView(C, {width: 50*4, height: 50*4})
+const tableView = BilinearTableView(C, {width: 55*4, height: 55*4})
 link(ndArrayInput, tableView)
 ```
 
 ${ndArrayInput}
 
 <details open>
-  <summary>Unit Surfaces</summary>
-  <div class="card">
-    ${surfaceSliceView}
+  <summary>Multiplication Table</summary>
+  <div class="card" style="text-align: center">
+    ${tableView}
   </div>
 </details>
 
 <details>
-  <summary>Multiplication Table</summary>
-  <div class="card" style="text-align: center">
-    ${tableView}
+  <summary>Unit Surfaces</summary>
+  <div class="card">
+    ${surfaceSliceView}
   </div>
 </details>
