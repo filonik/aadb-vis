@@ -24,7 +24,7 @@ const DEFAULT_PALETTE = chroma.brewer.Set1
 export function BilinearTableView(value = undefined, {width = 20, height = 20} = {}) {
   const root = svg`<svg class="bilinear" width="${width}" height="${height}"></svg>`
 
-  function renderVector(P, x){
+  function renderVector(P, x) {
     const y = ndarray([0, 0], [2])
     matmul(y, P, x)
     const item = svg`<g>
@@ -34,7 +34,20 @@ export function BilinearTableView(value = undefined, {width = 20, height = 20} =
     return item
   }
 
-  function renderVectorPiecewise(P, x){
+  function renderVectorBasis(P, x) {
+    const n = value.shape[0]
+    const item = svg`<g transform="scale(0.75, 0.75)"></g>`
+    for (let i=0; i<n; i++) {
+      const y = ndarray([0, 0], [2])
+      matmul(y, P, component(i)(x))
+      item.appendChild(svg`<line x1="0" y1="0" x2="${y.get(0)}" y2="${y.get(1)}" stroke="${DEFAULT_PALETTE[i]}" />`)
+    }
+    //item.appendChild(svg`<circle cx="0" cy="0" r="0.15" stroke="none" fill="${DEFAULT_PALETTE[DEFAULT_PALETTE.length-1]}" />`)
+    item.appendChild(svg`<circle cx="0" cy="0" r="0.15" stroke="none" />`)
+    return item
+  }
+
+  function renderVectorPiecewise(P, x) {
     const n = value.shape[0]
     const item = svg`<g transform="scale(0.75, 0.75)"></g>`
     const lastY = ndarray([0, 0], [2])
@@ -60,7 +73,7 @@ export function BilinearTableView(value = undefined, {width = 20, height = 20} =
         for (let j=0; j<n; j++) {
           const item = svg`<g transform="translate(${0+0.5}, ${j+0.5}) scale(0.5,-0.5)">
             <rect x="-1" y="-1" width="2" height="2" fill="none" />
-            ${renderVectorPiecewise(P, value.pick(i,j))}
+            ${renderVectorBasis(P, value.pick(i,j))}
           </g>`
           col.appendChild(item)
         }
