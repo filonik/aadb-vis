@@ -895,6 +895,7 @@ export function SurfaceSlice1DView(value = undefined, {width = 20, height = 20, 
 
   const render = (time) => {
     const t = 0.2*time
+    const s = 1.5
     /*
     const P = new Float32Array([
       Math.cos(t),-Math.sin(t),0,
@@ -921,9 +922,16 @@ export function SurfaceSlice1DView(value = undefined, {width = 20, height = 20, 
     */
     const P = new Float32Array([
       1,0,0,0,
-      0,Math.cos(t),-Math.sin(t),0,
-      0,0,0,1
+      0,s*Math.cos(t),0,-s*Math.sin(t),
+      0,0,s,0,
     ])
+    /*
+    const P = new Float32Array([
+      1,0,0,0,
+      0,1,0,0,
+      0,0,Math.cos(t),-Math.sin(t)
+    ])
+    */
 
     gl.viewport(0, 0, canvas.width, canvas.height);
 
