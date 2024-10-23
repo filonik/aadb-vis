@@ -928,8 +928,15 @@ export function SurfaceSlice1DView(value = undefined, {width = 20, height = 20, 
     /*
     const P = new Float32Array([
       1,0,0,0,
-      0,1,0,0,
-      0,0,Math.cos(t),-Math.sin(t)
+      0,s,0,0,
+      0,0,s*Math.cos(t),-s*Math.sin(t)
+    ])
+    */
+    /*
+    const P = new Float32Array([
+      1,0,0,s*Math.sin(t),
+      0,s,0,0,
+      0,0,s,0
     ])
     */
 

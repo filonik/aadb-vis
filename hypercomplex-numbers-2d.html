@@ -16,8 +16,8 @@
 <link rel="modulepreload" href="./_node/ndarray@1.0.19/index.2ea96455.js">
 <link rel="modulepreload" href="./_import/components/common.b81f70e7.js">
 <link rel="modulepreload" href="./_import/components/NdArrayInput.8ddce8f1.js">
-<link rel="modulepreload" href="./_import/components/SurfaceView.d450f988.js">
-<link rel="modulepreload" href="./_import/components/BilinearTableView.942d5cfe.js">
+<link rel="modulepreload" href="./_import/components/SurfaceView.43802c0f.js">
+<link rel="modulepreload" href="./_import/components/BilinearTableView.3c10b777.js">
 <link rel="modulepreload" href="./_npm/htl@0.3.1/063eb405.js">
 <link rel="modulepreload" href="./_observablehq/stdlib/inputs.3b79a561.js">
 <link rel="modulepreload" href="./_import/components/NumberInput.0177686c.js">
@@ -44,7 +44,7 @@
 import {define} from "./_observablehq/client.34869733.js";
 
 define({id: "457d91f3", inputs: ["html"], outputs: ["ndarray","link","NdArrayInput","jsonToNdArray","Surface1DView","BilinearTableView","AadbLink"], body: async (html) => {
-const [{default: ndarray}, {link}, {NdArrayInput, jsonToNdArray}, {Surface1DView}, {BilinearTableView}] = await Promise.all([import("./_node/ndarray@1.0.19/index.2ea96455.js"), import("./_import/components/common.b81f70e7.js"), import("./_import/components/NdArrayInput.8ddce8f1.js"), import("./_import/components/SurfaceView.d450f988.js"), import("./_import/components/BilinearTableView.942d5cfe.js")]);
+const [{default: ndarray}, {link}, {NdArrayInput, jsonToNdArray}, {Surface1DView}, {BilinearTableView}] = await Promise.all([import("./_node/ndarray@1.0.19/index.2ea96455.js"), import("./_import/components/common.b81f70e7.js"), import("./_import/components/NdArrayInput.8ddce8f1.js"), import("./_import/components/SurfaceView.43802c0f.js"), import("./_import/components/BilinearTableView.3c10b777.js")]);
 
 function AadbLink(link) {
   return html`<a href="https://filonik.github.io/aadb/#/${link}" target="_blank">AADB</a>`
@@ -52,12 +52,14 @@ function AadbLink(link) {
 return {ndarray,link,NdArrayInput,jsonToNdArray,Surface1DView,BilinearTableView,AadbLink};
 }});
 
-define({id: "09d7d037", inputs: ["Inputs","view"], outputs: ["examples","selectionInput","selection"], body: (Inputs,view) => {
+define({id: "87445376", inputs: ["Inputs","view"], outputs: ["examples","selectionInput","selection"], body: (Inputs,view) => {
 const examples = [
   {name: "Complex", link: "2/1729", C: {data:[1,0,0,1,0,1,-1,0], shape:[2,2,2]}},
   {name: "Dual", link: "2/271", C: {data:[1,0,0,1,0,1,0,0], shape:[2,2,2]}},
   {name: "Split-Complex", link: "2/1000", C: {data:[1,0,0,1,0,1,+1,0], shape:[2,2,2]}},
   {name: "Real + Real", link: "2/2188", C: {data:[ 1, 0, 0, 0, 0, 0, 0, 1 ], shape:[2,2,2]}},
+  {name: "2/4012", link: "2/4012", C: {data:[ 1, -1, 1, 1, 1, 1, -1, 1 ], shape:[2,2,2]}},
+  //{name: "2/277", link: "2/277", C: {data:[ 1, -1, 0, 1, 0, 1, 0, 0 ], shape:[2,2,2]}},
 ]
 
 const selectionInput = Inputs.select(examples, {format: (example) => example.name})
@@ -153,7 +155,7 @@ $$
 
 ## Examples
 -->
-<div class="observablehq observablehq--block"><!--:09d7d037:--></div>
+<div class="observablehq observablehq--block"><!--:87445376:--></div>
 <p>
 </p><div class="flex flex-row gap-2">
 <div class="text-sm">Select Example:</div>
@@ -191,6 +193,6 @@ ${ndArrayInput}
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./"><span>Hypercomplex Numbers</span></a><a rel="next" href="./hypercomplex-numbers-3d"><span>3-dimensional</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-10-18T21:34:42">Oct 18, 2024</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-10-23T18:24:00">Oct 23, 2024</a>.</div>
 </footer>
 </div>
