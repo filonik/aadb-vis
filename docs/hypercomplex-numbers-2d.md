@@ -45,6 +45,8 @@ const examples = [
   {name: "Dual", link: "2/271", C: {data:[1,0,0,1,0,1,0,0], shape:[2,2,2]}},
   {name: "Split-Complex", link: "2/1000", C: {data:[1,0,0,1,0,1,+1,0], shape:[2,2,2]}},
   {name: "Real + Real", link: "2/2188", C: {data:[ 1, 0, 0, 0, 0, 0, 0, 1 ], shape:[2,2,2]}},
+  {name: "2/4012", link: "2/4012", C: {data:[ 1, -1, 1, 1, 1, 1, -1, 1 ], shape:[2,2,2]}},
+  //{name: "2/277", link: "2/277", C: {data:[ 1, -1, 0, 1, 0, 1, 0, 0 ], shape:[2,2,2]}},
 ]
 
 const selectionInput = Inputs.select(examples, {format: (example) => example.name})
